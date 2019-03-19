@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 
+import com.dhq.grid.custom.CustomGridListener;
 import com.dhq.gridview.GridLayout;
 import com.dhq.gridview.divider.DividerBuilder;
 import com.dhq.gridview.divider.RvDivider;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private GridLayout gridImageView;
+    private GridLayout gridImageView,gridImageView2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,10 +22,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         gridImageView = findViewById(R.id.giv_img);
+        gridImageView2 = findViewById(R.id.giv_img2);
 
         RvDivider divider = DividerBuilder.getInstance(this)
-                .setDrawable(R.mipmap.ic_launcher)
-                .setSpace(R.dimen.item_touch_helper_max_drag_scroll_per_frame)
+                .setSpaceColor(android.R.color.transparent,R.dimen.dp750_20)
                 .build();
 
         gridImageView.getGridImageBuild().setCanAdd(true)
@@ -45,6 +46,15 @@ public class MainActivity extends AppCompatActivity {
                 }).build();
 
 
+
+        gridImageView2.getGridImageBuild().setCanAdd(true)
+                .setMaxCount(9)
+                .setDivider(divider)
+                .setImageListener(new CustomGridListener()).build();
+
+
+
+
         ArrayList arrayList = new ArrayList();
         arrayList.add("");
         arrayList.add("");
@@ -54,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         arrayList.add("");
 
         gridImageView.setDatas(arrayList);
+        gridImageView2.setDatas(arrayList);
     }
 
 }

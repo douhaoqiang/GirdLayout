@@ -108,7 +108,7 @@ public class GridImageAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewH
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_image_view, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(mNineListener.getLayoutId(), parent, false);
 
         return new BaseRvHolder(view, viewType);
     }
@@ -118,13 +118,14 @@ public class GridImageAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewH
 
         int size = datas.size();
 
-        final ImageView imageView = (ImageView) ((BaseRvHolder) holder).getRootView();
+        final View imageView = ((BaseRvHolder) holder).getRootView();
 
         imageView.setOnClickListener(null);
         if (isCanAdd){
             //表示是添加视图
             if (position == datas.size()) {
-                imageView.setImageResource(mNineListener.getAddImgResId());
+                imageView.setBackgroundResource(mNineListener.getAddImgResId());
+//                imageView.setImageResource(mNineListener.getAddImgResId());
                 imageView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -137,7 +138,8 @@ public class GridImageAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewH
         }else {
             //表示是展示视图
             if (size==0){
-                imageView.setImageResource(noImgResId);
+                imageView.setBackgroundResource(noImgResId);
+//                imageView.setImageResource(noImgResId);
             }else {
                 mNineListener.convert((BaseRvHolder) holder, datas.get(position), position);
             }
