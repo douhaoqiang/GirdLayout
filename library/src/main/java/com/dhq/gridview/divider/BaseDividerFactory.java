@@ -80,10 +80,6 @@ public abstract class BaseDividerFactory extends RecyclerView.ItemDecoration {
             this.context = context;
         }
 
-        public LinearDivider buildLinearDivider() {
-            return new LinearDivider(this);
-        }
-
         public GridDivider buildGridDivider() {
             return new GridDivider(this);
         }

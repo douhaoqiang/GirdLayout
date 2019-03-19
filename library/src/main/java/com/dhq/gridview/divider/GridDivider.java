@@ -199,7 +199,7 @@ public class GridDivider extends BaseDividerFactory {
                     if (lastSpan == 0) {
                         lastRowdividerWidth = parent.getRight() - parent.getPaddingRight();
                     } else {
-                        lastRowdividerWidth = parent.getPaddingLeft() + parentWidth / mSpanCount * lastSpan ;
+                        lastRowdividerWidth = parent.getPaddingLeft() + parentWidth / mSpanCount * lastSpan;
                     }
                     right = lastRowdividerWidth;
                     bottom = dividerCenter + mColumnSpace / 2;
@@ -213,7 +213,7 @@ public class GridDivider extends BaseDividerFactory {
                         if (lastSpan == 0) {
                             lastRowdividerWidth = parent.getRight() - parent.getPaddingRight();
                         } else {
-                            lastRowdividerWidth = parent.getPaddingLeft() + parentWidth / mSpanCount * lastSpan ;
+                            lastRowdividerWidth = parent.getPaddingLeft() + parentWidth / mSpanCount * lastSpan;
                         }
                         right = lastRowdividerWidth;
                         bottom = dividerCenter + mColumnSpace / 2;

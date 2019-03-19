@@ -1,9 +1,7 @@
 package com.dhq.gridview.gridlistener;
 
-import android.widget.ImageView;
-
 import com.dhq.gridview.BaseRvHolder;
-import com.dhq.gridview.GridLayout;
+import com.dhq.gridview.R;
 
 /**
  * DESC 只是简单的图片
@@ -14,7 +12,7 @@ public class GridImageListener<T> implements BaseGridListener<T> {
 
     @Override
     public int getLayoutId() {
-        return 0;
+        return R.layout.item_image_view;
     }
 
     @Override
