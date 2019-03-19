@@ -12,4 +12,17 @@
 
     </declare-styleable>
 
+    <declare-styleable name="RatioImageView">
+
+        <!-- 宽高比 -->
+        <attr name="ratio" format="float" />
+        <attr name="ratioMode" format="integer">
+            <!-- 根据宽度计算比例 -->
+            <enum name="dependWidth" value="1"></enum>
+            <!-- 根据高度计算比例 -->
+            <enum name="dependHeight" value="2"></enum>
+        </attr>
+
+    </declare-styleable>
+
 </resources>

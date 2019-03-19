@@ -7,7 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
 
-import com.dhq.gridview.divider.GridDivider;
+import com.dhq.gridview.divider.RvDivider;
 import com.dhq.gridview.gridlistener.BaseGridListener;
 
 import java.util.List;
@@ -19,11 +19,21 @@ import java.util.List;
 
 public class GridLayout<T> extends LinearLayout {
 
+
     private RecyclerView mRecyclerView;
     private GridImageAdapter<T> mAdapter;
-    private int mColumnCount = 3;//图片显示列数
-    private boolean mIsCanAdd = false;//是否可以添加图片
-    private int noImgSrcId = -1;//没有图片时的显示图片资源id
+    /**
+     * 显示列数
+     */
+    private int mColumnCount = 3;
+    /**
+     * 是否可以显示添加布局
+     */
+    private boolean mIsCanAdd = false;
+    /**
+     * 没有图片时显示的图片资源id
+     */
+    private int noImgSrcId = -1;
     private GridImageBuild mGridImageBuild;
 
     public GridLayout(Context context) {
@@ -122,7 +132,7 @@ public class GridLayout<T> extends LinearLayout {
         private int maxCount = 9;//图片最大数量
         private BaseGridListener imageListener = null;//gridview监听
         private boolean isSetDivider = true;//表示是否可以设置分割线，防止adapter中分割线重复添加多次的问题
-        private GridDivider divider = null;//Grid分割线
+        private RvDivider divider = null;//Grid分割线
         private boolean isSetCanAdd = false;
         private boolean isCanAdd = false;
 
@@ -163,7 +173,7 @@ public class GridLayout<T> extends LinearLayout {
          * @param gridDivider
          * @return
          */
-        public GridImageBuild setGridDivider(GridDivider gridDivider) {
+        public GridImageBuild setDivider(RvDivider gridDivider) {
             if (divider != null) {
                 isSetDivider = false;
             }

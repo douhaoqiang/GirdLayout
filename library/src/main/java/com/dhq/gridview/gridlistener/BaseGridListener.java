@@ -31,7 +31,7 @@ public interface BaseGridListener<T> {
      * @param position 位置
      * @param count    现在图片数量
      */
-    void addNewView(int position, int count);
+    void addClick(int position, int count);
 
     /**
      * 获取添加图片位置图片资源id

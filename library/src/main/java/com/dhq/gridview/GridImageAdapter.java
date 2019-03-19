@@ -128,7 +128,7 @@ public class GridImageAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewH
                 imageView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        mNineListener.addNewView(position, datas.size());
+                        mNineListener.addClick(position, datas.size());
                     }
                 });
             } else {

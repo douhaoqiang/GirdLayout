@@ -1,38 +1,56 @@
 package com.dhq.gridview.divider;
 
+
 import android.graphics.Canvas;
 import android.graphics.Rect;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 /**
- * DESC RecyclerViewDivider工具类
+ * DESC 分割线工具
  * Created by douhaoqiang on 2017/11/17.
  */
 
-public class GridDivider extends BaseDividerFactory {
+public class RvDivider extends RecyclerView.ItemDecoration {
 
-    private final Rect mBounds = new Rect();
-    private final Drawable mDivider;
-    private final int mColumnSpace;
-    private final int mRowSpace;
-    private final boolean mHideRoundDivider;//是否显示四周分割线
+    private Rect mBounds = new Rect();
+    private Drawable mDivider;
+    private int mColumnSpace;
+    private int mRowSpace;
+    private boolean mHideRoundDivider;//是否显示四周分割线
     private int mSpanCount = 1;
     private int mItemWidth;
     private int mItemHeight;
 
-    public GridDivider(Builder builder) {
+
+    public RvDivider(DividerBuilder builder) {
+
         this.mDivider = builder.getDrawable();
         this.mColumnSpace = builder.getColumnSpace();
         this.mRowSpace = builder.getRowSpace();
         this.mHideRoundDivider = builder.isHideLastDivider();
-//        this.mHideRoundDivider = false;
+
     }
 
     @Override
+    public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
+        drawDivider(c, parent, state);
+    }
+
+    @Override
+    public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+        calculateItemOffsets(outRect, view, parent, state);
+    }
+
+    /**
+     * 绘制分割线
+     *
+     * @param c
+     * @param parent
+     * @param state
+     */
     public void drawDivider(Canvas c, RecyclerView parent, RecyclerView.State state) {
         if (parent.getLayoutManager() == null || mDivider == null) {
             return;
@@ -49,8 +67,14 @@ public class GridDivider extends BaseDividerFactory {
         }
     }
 
-
-    @Override
+    /**
+     * 计算偏移量
+     *
+     * @param outRect
+     * @param view
+     * @param parent
+     * @param state
+     */
     public void calculateItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
         GridLayoutManager layoutManager = (GridLayoutManager) parent.getLayoutManager();
         mSpanCount = layoutManager.getSpanCount();
@@ -75,9 +99,16 @@ public class GridDivider extends BaseDividerFactory {
             outRect.bottom = mColumnSpace; // item bottom
         }
 
-
     }
 
+    /**
+     * 添加分割线
+     *
+     * @param recyclerView target recyclerView
+     */
+    public void addTo(RecyclerView recyclerView) {
+        recyclerView.addItemDecoration(this);
+    }
 
     private void drawSpace(Canvas canvas, RecyclerView parent) {
 
@@ -286,98 +317,9 @@ public class GridDivider extends BaseDividerFactory {
         canvas.restore();
     }
 
-
-    private int getAdapterPosition(View view) {
-        return ((RecyclerView.LayoutParams) view.getLayoutParams()).getViewAdapterPosition();
-    }
-
     private Drawable getDivider() {
         return mDivider;
 
-    }
-
-
-    private int getLeftSpaceWidth(int position) {
-        if (position % mSpanCount == 0) {
-            return getEdgeWidth();
-        }
-        return getColumnSpace() / 2;
-    }
-
-    private int getTopSpaceWidth(int position) {
-        if (position < mSpanCount) {
-            return getEdgeHeight();
-        }
-        return getRowSpace() / 2;
-    }
-
-    private int getRightSpaceWidth(int position) {
-        if (position % mSpanCount == mSpanCount - 1) {
-            return getEdgeWidth();
-        }
-        return getColumnSpace() / 2;
-    }
-
-    private int getBottomSpaceWidth(int totalCount, int position) {
-        int totalRow = (totalCount - 1) / mSpanCount + 1;
-        int currentRow = position / mSpanCount + 1;
-        if (totalRow == currentRow) {
-            return getEdgeWidth();
-        }
-        return getRowSpace() / 2;
-    }
-
-
-    /**
-     * 获取分割线宽度
-     *
-     * @return
-     */
-    private int getColumnSpace() {
-
-        if (mDivider instanceof ColorDrawable) {
-            return mColumnSpace;
-        }
-        return mDivider.getIntrinsicWidth();
-    }
-
-    /**
-     * 获取分割线高度
-     *
-     * @return
-     */
-    private int getRowSpace() {
-
-        if (mDivider instanceof ColorDrawable) {
-            return mRowSpace;
-        }
-        return mDivider.getIntrinsicHeight();
-    }
-
-    /**
-     * 获取边缘分割线宽度
-     *
-     * @return
-     */
-    private int getEdgeWidth() {
-        if (mHideRoundDivider) {
-            return 0;
-        }
-
-        return getColumnSpace();
-    }
-
-    /**
-     * 获取边缘分割线高度
-     *
-     * @return
-     */
-    private int getEdgeHeight() {
-
-        if (mHideRoundDivider) {
-            return 0;
-        }
-        return getRowSpace();
     }
 
 }
