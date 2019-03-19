@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="GridLayout">
+
+        <!-- 列数 -->
+        <attr name="gridImageColumn" format="integer" />
+        <!-- 是否可以添加图片 -->
+        <attr name="isCanAdd" format="boolean" />
+        <!-- 没有图片时显示图片 -->
+        <attr name="noImgSrc" format="reference" />
+
+    </declare-styleable>
+
+</resources>
