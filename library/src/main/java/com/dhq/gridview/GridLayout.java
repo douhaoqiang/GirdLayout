@@ -2,11 +2,14 @@ package com.dhq.gridview;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.support.annotation.ColorRes;
+import android.support.annotation.DimenRes;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
 
+import com.dhq.gridview.divider.DividerBuilder;
 import com.dhq.gridview.divider.RvDivider;
 import com.dhq.gridview.gridlistener.BaseGridListener;
 
@@ -169,11 +172,33 @@ public class GridLayout<T> extends LinearLayout {
 
         /**
          * 设置分割线
-         *
-         * @param gridDivider
+         * @param strokeWidth  分割线宽度
          * @return
          */
-        public GridImageBuild setDivider(RvDivider gridDivider) {
+        public GridImageBuild setDivider( @DimenRes int strokeWidth) {
+
+            RvDivider gridDivider = DividerBuilder.getInstance(gridImageView.getContext())
+                    .setColumnSpace(strokeWidth)
+                    .build();
+
+            if (divider != null) {
+                isSetDivider = false;
+            }
+            divider = gridDivider;
+            return this;
+        }
+        /**
+         * 设置分割线
+         * @param colorId     分割线颜色
+         * @param strokeWidth 分割线宽度
+         * @return
+         */
+        public GridImageBuild setDivider(@ColorRes int colorId, @DimenRes int strokeWidth) {
+
+            RvDivider gridDivider = DividerBuilder.getInstance(gridImageView.getContext())
+                    .setSpaceColor(android.R.color.transparent,strokeWidth)
+                    .build();
+
             if (divider != null) {
                 isSetDivider = false;
             }
@@ -184,8 +209,8 @@ public class GridLayout<T> extends LinearLayout {
         /**
          * 设置监听
          *
-         * @param imageListener
-         * @return
+         * @param imageListener  监听
+         * @return  返回build
          */
         public GridImageBuild setImageListener(BaseGridListener imageListener) {
             this.imageListener = imageListener;

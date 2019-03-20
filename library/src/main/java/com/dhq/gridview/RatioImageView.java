@@ -42,7 +42,7 @@ public class RatioImageView extends android.support.v7.widget.AppCompatImageView
     /**
      * 设置ImageView的宽高比
      *
-     * @param ratio
+     * @param ratio 宽高比
      */
     public void setRatio(float ratio) {
         mRatio = ratio;

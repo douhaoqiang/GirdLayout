@@ -47,9 +47,9 @@ public class RvDivider extends RecyclerView.ItemDecoration {
     /**
      * 绘制分割线
      *
-     * @param c
-     * @param parent
-     * @param state
+     * @param c       画布
+     * @param parent  父布局
+     * @param state   状态
      */
     public void drawDivider(Canvas c, RecyclerView parent, RecyclerView.State state) {
         if (parent.getLayoutManager() == null || mDivider == null) {
@@ -70,10 +70,10 @@ public class RvDivider extends RecyclerView.ItemDecoration {
     /**
      * 计算偏移量
      *
-     * @param outRect
-     * @param view
-     * @param parent
-     * @param state
+     * @param outRect   item范围
+     * @param view      item 布局
+     * @param parent    父布局
+     * @param state     状态
      */
     public void calculateItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
         GridLayoutManager layoutManager = (GridLayoutManager) parent.getLayoutManager();
